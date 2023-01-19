@@ -20,6 +20,9 @@
 			<h1 id="colorlib-logo"><a href="index.html">elen<span>.</span></a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
+                    @auth
+                        <li>Kullanıcı Giriş Yaptı</li>
+                    @endauth
 					<li class="colorlib-active"><a href="index.html">Home</a></li>
 					<li><a href="photography.html">Photography</a></li>
 					<li><a href="travel.html">Travel</a></li>
