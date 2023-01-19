@@ -15,3 +15,20 @@ body{
 .wrapper .form{
     width: 100%;
 }
+
+.invalid label{
+    color: #dc3545;
+}
+
+.invalid input{
+    border-color: #dc3545;
+}
+
+.invalid input::placeholder{
+    color: #dc3545;
+    opacity: 1;
+}
+
+.invalid small{
+    color:#dc3545;
+}
