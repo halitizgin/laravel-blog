@@ -27,7 +27,12 @@
                     @endguest
                     @auth
                         <li>{{ auth()->user()->name }}</li>
-                        <li>Logout</li>
+                        <li>
+                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <a href="javascript:;" onclick="document.getElementById('logoutForm').submit()">Logout</a>
+                            </form>
+                        </li>
                     @endauth
 				</ul>
 			</nav>
