@@ -2,7 +2,7 @@
 @section('title', 'Laravel Login')
 @section('content')
     <div class="wrapper">
-        <form class="form" action="{{ route('login.auth') }}" method="POST">
+        <form class="form" method="POST">
             @csrf
             <div class="form-outline mb-4 @error('email') invalid @enderror">
                 <label class="form-label" for="email">Email</label>
