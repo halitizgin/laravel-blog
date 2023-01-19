@@ -17,18 +17,18 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html">elen<span>.</span></a></h1>
+			<h1 id="colorlib-logo"><a href="{{ route('home') }}">elen<span>.</span></a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
+					<li class="colorlib-active"><a href="{{ route('home') }}">Home</a></li>
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @endguest
                     @auth
-                        <li>Kullanıcı Giriş Yaptı</li>
+                        <li>{{ auth()->user()->name }}</li>
+                        <li>Logout</li>
                     @endauth
-					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="photography.html">Photography</a></li>
-					<li><a href="travel.html">Travel</a></li>
-					<li><a href="fashion.html">Fashion</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</nav>
 
