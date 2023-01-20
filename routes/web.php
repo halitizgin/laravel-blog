@@ -41,4 +41,6 @@ Route::middleware(['auth', 'auth.session'])->group(function(){
     Route::get('/password-confirm', [PasswordConfirmController::class, 'index'])->name('password.confirm');
 
     Route::post('/password-confirm', [PasswordConfirmController::class, 'confirm'])->middleware(['throttle:6,1'])->name('password.confirm.post');
+
+    Route::post('/profile/password/update', [ProfileController::class, 'update_password'])->name('profile.password.update');
 });
