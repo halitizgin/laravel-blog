@@ -3,7 +3,7 @@
 @section('content.title', $current->name . ' Profile')
 @section('content')
     <h3>Update Profile</h3>
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update') }}" method="GET">
         @csrf
         <x-forms.input name="name" title="Full Name" type="text" :value="$current->name" />
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordConfirmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,9 @@ Route::middleware(['auth', 'auth.session'])->group(function(){
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-    Route::post('/profile/update', [ProfileController::class, 'update_profile'])->name('profile.update');
+    Route::get('/profile/update', [ProfileController::class, 'update_profile'])->middleware(['password.confirm'])->name('profile.update');
+
+    Route::get('/password-confirm', [PasswordConfirmController::class, 'index'])->name('password.confirm');
+
+    Route::post('/password-confirm', [PasswordConfirmController::class, 'confirm'])->middleware(['throttle:6,1'])->name('password.confirm.post');
 });
