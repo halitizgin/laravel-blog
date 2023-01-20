@@ -34,4 +34,6 @@ Route::middleware(['auth', 'auth.session'])->group(function(){
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+    Route::post('/profile/update', [ProfileController::class, 'update_profile'])->name('profile.update');
 });
