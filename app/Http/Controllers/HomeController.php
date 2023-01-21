@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with(['comments', 'category', 'user'])->get();
+
         return view('home', compact('posts'));
     }
 }
