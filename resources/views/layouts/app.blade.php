@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 
+    @vite(['resources/js/app.js'])
+
     {{-- load styles --}}
     @include('assets.styles')
     @yield('styles')
