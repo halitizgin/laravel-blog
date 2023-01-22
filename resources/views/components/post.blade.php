@@ -7,7 +7,7 @@
             <div class="ml-3 info">
                 <span>Written by</span>
                 <h3><a href="#">{{ $post->user->name }}</a></h3>
-                <small><span>{{ $post->created_at }}</span></small>
+                <small><span>{{ $post->created_at->diffForHumans() }}</span></small>
             </div>
         </div>
         <div class="meta-wrap align-items-center">
