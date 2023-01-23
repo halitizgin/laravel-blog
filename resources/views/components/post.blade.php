@@ -1,7 +1,7 @@
 <div class="blog-entry ftco-animate">
     <div class="text text-2 pt-2 mt-3">
         <span class="category mb-3 d-block"><a href="#">{{ $post->category->name }}</a></span>
-        <h3 class="mb-4"><a href="#">{{ $post->title }}</a></h3>
+        <h3 class="mb-4"><a href="{{ route('post', $post->id) }}">{{ $post->title }}</a></h3>
         <p class="mb-4">{{ $post->short_content }}</p>
         <div class="author mb-4 d-flex align-items-center">
             <div class="ml-3 info">
@@ -17,7 +17,8 @@
                 </p>
             </div>
             <div class="half">
-                <p><a href="#" class="btn py-2">Continue Reading <span class="ion-ios-arrow-forward"></span></a></p>
+                <p><a href="#" class="btn py-2">Continue Reading <span class="ion-ios-arrow-forward"></span></a>
+                </p>
             </div>
         </div>
     </div>
