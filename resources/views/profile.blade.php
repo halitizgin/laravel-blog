@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url('css/auth.css') }}">
 @endsection
 @section('content')
+    <a href="{{ route('user', $current->id) }}" class="btn btn-primary mb-2">Show Posts</a>
     <h3>Update Profile</h3>
     <form action="{{ route('profile.update') }}" method="GET">
         @csrf

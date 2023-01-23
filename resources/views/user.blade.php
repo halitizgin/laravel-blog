@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Laravel Kod Evreni Home')
-@section('content.title', 'All Posts')
+@section('title', $user->name . ' Posts')
+@section('content.title', $user->name . ' Posts')
 @section('content')
     {{ $posts->links('pagination::bootstrap-4') }}
     <div class="row">
