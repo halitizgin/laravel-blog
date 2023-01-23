@@ -40,15 +40,19 @@
 
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="p-3 p-md-5 bg-light">
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary" />
-                                </div>
-                            </form>
+                            @auth
+                                <form action="{{ route('comment.create', $post->id) }}" method="POST"
+                                    class="p-3 p-md-5 bg-light">
+                                    @csrf
+                                    <x-forms.input name="message" title="Message" />
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Post</button>
+                                    </div>
+                                </form>
+                            @else
+                                You have to <a href="{{ route('login') }}">Login</a> or <a
+                                    href="{{ route('register') }}">Register</a> to post a comment!
+                            @endauth
                         </div><!-- END COL -->
                     </div>
                 </div>

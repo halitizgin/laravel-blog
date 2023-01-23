@@ -9,7 +9,9 @@ class PostController extends Controller
 {
     public function index($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with(['comments' => function($query){
+            $query->orderBy('created_at', 'desc');
+        }])->findOrFail($id);
         return view('post', compact('post'));
     }
 }

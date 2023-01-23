@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordConfirmController;
@@ -51,4 +52,6 @@ Route::middleware(['auth', 'auth.session'])->group(function(){
     Route::post('/password-confirm', [PasswordConfirmController::class, 'confirm'])->middleware(['throttle:6,1'])->name('password.confirm.post');
 
     Route::post('/profile/password/update', [ProfileController::class, 'update_password'])->name('profile.password.update');
+
+    Route::post('/comment/create/{post_id}', [CommentController::class, 'store'])->name('comment.create');
 });
