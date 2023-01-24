@@ -32,6 +32,7 @@
                                         <h3>{{ $comment->user->name }}</h3>
                                         <div class="meta">{{ $comment->created_at->diffForHumans() }}</div>
                                         <p>{{ $comment->content }}</p>
+                                        <a href="{{ route('comment.edit', $comment->id) }}">Edit</a>
                                     </div>
                                 </li>
                             @endforeach

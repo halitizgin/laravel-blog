@@ -53,5 +53,8 @@ Route::middleware(['auth', 'auth.session'])->group(function(){
 
     Route::post('/profile/password/update', [ProfileController::class, 'update_password'])->name('profile.password.update');
 
+
     Route::post('/comment/create/{post_id}', [CommentController::class, 'store'])->name('comment.create');
+    Route::get('/comment/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
+    Route::put('/comment/edit/{id}', [CommentController::class, 'update'])->name('comment.update');
 });

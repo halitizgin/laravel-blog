@@ -21,4 +21,23 @@ class CommentController extends Controller
 
         return redirect()->route('post', $post_id);
     }
+
+    public function edit($id)
+    {
+        $comment = Comment::findOrFail($id);
+        return view('comment.edit', compact('comment'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'message' => ['required', 'min:10', 'max:100']
+        ]);
+
+        $comment = Comment::findOrFail($id);
+        $comment->content = $validated['message'];
+        $comment->save();
+
+        return redirect()->route('post', $comment->post->id);
+    }
 }
