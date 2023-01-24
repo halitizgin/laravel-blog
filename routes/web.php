@@ -43,18 +43,19 @@ Route::middleware('guest')->group(function(){
 Route::middleware(['auth', 'auth.session'])->group(function(){
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::prefix('/profile')->group(function(){
+        Route::get('/', [ProfileController::class, 'index'])->name('profile');
+        Route::get('/update', [ProfileController::class, 'update_profile'])->middleware(['password.confirm'])->name('profile.update');
+        Route::post('/password/update', [ProfileController::class, 'update_password'])->name('profile.password.update');
+    });
 
-    Route::get('/profile/update', [ProfileController::class, 'update_profile'])->middleware(['password.confirm'])->name('profile.update');
+    Route::prefix('/comment')->group(function(){
+        Route::post('/create/{post_id}', [CommentController::class, 'store'])->name('comment.create');
+        Route::get('/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
+        Route::put('/edit/{id}', [CommentController::class, 'update'])->name('comment.update');
+        Route::delete('/destroy/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    });
 
     Route::get('/password-confirm', [PasswordConfirmController::class, 'index'])->name('password.confirm');
-
     Route::post('/password-confirm', [PasswordConfirmController::class, 'confirm'])->middleware(['throttle:6,1'])->name('password.confirm.post');
-
-    Route::post('/profile/password/update', [ProfileController::class, 'update_password'])->name('profile.password.update');
-
-
-    Route::post('/comment/create/{post_id}', [CommentController::class, 'store'])->name('comment.create');
-    Route::get('/comment/edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
-    Route::put('/comment/edit/{id}', [CommentController::class, 'update'])->name('comment.update');
 });

@@ -40,4 +40,11 @@ class CommentController extends Controller
 
         return redirect()->route('post', $comment->post->id);
     }
+
+    public function destroy($id)
+    {
+        Comment::destroy($id);
+
+        return redirect()->back();
+    }
 }

@@ -33,6 +33,13 @@
                                         <div class="meta">{{ $comment->created_at->diffForHumans() }}</div>
                                         <p>{{ $comment->content }}</p>
                                         <a href="{{ route('comment.edit', $comment->id) }}">Edit</a>
+                                        <form id="commentform{{ $comment->id }}"
+                                            action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="javascript:;"
+                                                onclick="document.getElementById('commentform{{ $comment->id }}').submit()">Delete</a>
+                                        </form>
                                     </div>
                                 </li>
                             @endforeach
