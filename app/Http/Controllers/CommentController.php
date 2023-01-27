@@ -25,25 +25,33 @@ class CommentController extends Controller
     public function edit($id)
     {
         $comment = Comment::findOrFail($id);
+        $this->authorize('update', $comment);
         return view('comment.edit', compact('comment'));
     }
 
     public function update(Request $request, $id)
     {
+        $comment = Comment::findOrFail($id);
+
+        $this->authorize('update', $comment);
+
         $validated = $request->validate([
             'message' => ['required', 'min:10', 'max:100']
         ]);
 
-        $comment = Comment::findOrFail($id);
         $comment->content = $validated['message'];
         $comment->save();
 
-        return redirect()->route('post', $comment->post->id);
+        return redirect()->route('post', $comment->post->slug);
     }
 
     public function destroy($id)
     {
-        Comment::destroy($id);
+        $comment = Comment::findOrFail($id);
+
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
 
         return redirect()->back();
     }

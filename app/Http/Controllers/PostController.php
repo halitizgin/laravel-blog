@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index($id)
+    public function index($slug)
     {
         $post = Post::with(['comments' => function($query){
             $query->orderBy('created_at', 'desc');
-        }])->findOrFail($id);
+        }])->where('slug', $slug)->first();
         return view('post', compact('post'));
     }
 }
